@@ -1,4 +1,4 @@
-name: solar-system
+name: solar-system test
   on:
    workflow_dispatch:
    push:
