@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-env: 
-  MONGO_URL : 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
-  MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
-  MONGO_PASSWORD: ${{ secrets.MONGO.PASSWORD }}
+
+env:
+  MONGO_URL: 'mongodb+srv://${{ vars.MONGO_USERNAME }}:${{ secrets.MONGO_PASSWORD }}@supercluster.d83jj.mongodb.net/superData'
+
 jobs:  
   unit-Testing:
     runs-on: ubuntu-latest
@@ -24,4 +24,6 @@ jobs:
         run: npm install
 
       - name: Unit Testing
+        env:
+          MONGO_URL: ${{ env.MONGO_URL }}
         run: npm test
