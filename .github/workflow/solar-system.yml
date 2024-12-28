@@ -1,21 +1,25 @@
 name: solar-system test
-  on:
-   workflow_dispatch:
-   push:
+on:
+  workflow_dispatch:
+  push:
     branches:
       - main
       - 'feature/*'
-  jobs:  
-      unit-Testing
-      runs-on: ubuntu-latest
-      steps:
-      - name: checout Repository
+
+jobs:  
+  unit-Testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Setup Nodejs version
+
+      - name: Setup Node.js version
         uses: actions/setup-node@v3
-        with
+        with:
           node-version: 18
-      - name: Install Dependenices
+
+      - name: Install Dependencies
         run: npm install
-      - name: unit Testing
+
+      - name: Unit Testing
         run: npm test
